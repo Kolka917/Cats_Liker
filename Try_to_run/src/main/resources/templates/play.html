@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mimimimetr</title>
+</head>
+<body>
+<div align="center">
+<p>You are playing Mimimimetr</p>
+<p>Who is more mimi?</p>
+<p th:text="${steps}+' steps left.'" />
+
+<table>
+    <thead>
+    <tr>
+        <th>Left Cat</th>
+        <th>Right Cat</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+
+    </tr>
+    <tr>
+        <td><a href="#"><img height="200px" th:src="'/img/'+${cat1.getFilename()}" class="card-img-top"></a></td>
+
+        <td><a href="#"><img height="200px" th:src="'/img/'+${cat2.getFilename()}" class="card-img-top"></a></td>
+    </tr>
+    <tr>
+        <td><form action="#" th:action="@{/play/leftCatLiked}" th:object="${cat1}" method="post">
+            <input type="hidden" th:value="${cat1.getName()}" name="name" />
+            <input type="hidden" th:value="${cat1.getLikeAmount()}" name="likeAmount" />
+            <input type="hidden" th:value="${cat1.getFilename()}" name="filename" />
+            <input type="hidden" th:value="${cat1.getId()}" name="id" />
+            <p align="center"><input type="submit" th:value="${cat1.getName()}" /></p>
+        </form></td>
+
+        <td><form action="#" th:action="@{/play/rightCatLiked}" th:object="${cat2}" method="post">
+            <input type="hidden" th:value="${cat2.getName()}" name="name" />
+            <input type="hidden" th:value="${cat2.getLikeAmount()}" name="likeAmount" />
+            <input type="hidden" th:value="${cat2.getFilename()}" name="filename" />
+            <input type="hidden" th:value="${cat2.getId()}" name="id" />
+            <p align="center"><input type="submit" th:value="${cat2.getName()}" /></p>
+        </form></td>
+    </tr>
+    </tbody>
+</table>
+
+<button><a href="/greeting">Main Page</a></button>
+</div>
+</body>
+</html>
